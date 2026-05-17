@@ -254,9 +254,10 @@ def make_pdf(data: dict, all_notes: list, all_flashcards: list, all_quizzes: lis
         fc_table_data = [["#", "Subject", "Question", "Answer"]]
         for rec in all_flashcards[:10]:
             fc_table_data.append([
-                str(rec["card_number"]), rec["subject"],
-                rec["question"][:60] + ("…" if len(rec["question"]) > 60 else ""),
-                rec["answer"][:60]   + ("…" if len(rec["answer"])   > 60 else ""),
+                Paragraph(str(rec["card_number"]), body_style),
+                Paragraph(rec["subject"], body_style),
+                Paragraph(rec["question"][:60] + ("…" if len(rec["question"]) > 60 else ""), body_style),
+                Paragraph(rec["answer"][:60]   + ("…" if len(rec["answer"])   > 60 else ""), body_style),
             ])
         fc_table = Table(fc_table_data, colWidths=[1*cm, 3*cm, 6*cm, 6*cm])
         fc_table.setStyle(TableStyle([
